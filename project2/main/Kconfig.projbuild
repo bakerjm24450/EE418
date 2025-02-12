@@ -1,0 +1,31 @@
+menu "EE 418 Project Configuration"
+
+    config DHT22_GPIO
+        int "DHT22 GPIO Pin"
+        help
+            GPIO pin used for communication with DHT22 sensor
+            
+    config ESP_WIFI_SSID
+        string "WiFi SSID"
+        default "Replace with given SSID"
+        help
+            SSID (network name) to connect to
+
+    config ESP_WIFI_PASSWORD
+        string "WiFi Password"
+        default "Replace with given password"
+        help
+            WiFi password (WPA2)
+
+    config ESP_WIFI_MAX_RETRIES
+        int "Maximum number of retry attempts"
+        default 30
+        help
+            Maximum number of attempts to retry connecting to WiFi network
+    config ESP_HOSTNAME
+        string "mDNS Hostname"
+        default "esp32-yournamehere"
+        help
+            Unique network hostname for this ESP32
+            
+endmenu
