@@ -1,0 +1,72 @@
+menu "EE 418 Project Configuration"
+
+    config ESP_WIFI_SSID
+        string "WiFi SSID"
+        default "Replace with given SSID"
+        help
+            SSID (network name) to connect to
+
+    config ESP_WIFI_PASSWORD
+        string "WiFi Password"
+        default "Replace with given password"
+        help
+            WiFi password (WPA2)
+
+    config ESP_WIFI_MAX_RETRIES
+        int "Maximum number of retry attempts"
+        default 30
+        help
+            Maximum number of attempts to retry connecting to WiFi network
+    config ESP_HOSTNAME
+        string "mDNS Hostname"
+        default "esp32-yournamehere"
+        help
+            Unique network hostname for this ESP32
+
+    config DHT22_GPIO
+       int "DHT22 GPIO Pin"
+        help
+            GPIO pin used for communication with DHT22 sensor
+                    
+    config THERMOSTAT_GPIO
+        int "Thermostat GPIO Pin"
+        help
+            GPIO pin used by thermostat for controlling heat
+            
+    config SCLK_GPIO
+        int "SPI SCLK GPIO Pin"
+        help 
+            GPIO pin used as SPI SCLK
+
+    config MOSI_GPIO
+        int "SPI MOSI GPIO Pin"
+        help
+            GPIO pin used as SPI MOSI
+        
+    config MISO_GPIO
+        int "SPI MISO GPIO Pin"
+        help
+            GPIO pin used as SPI MISO
+     
+    config DC_GPIO
+        int "SPI DC GPIO Pin"
+        help
+            GPIO pin used as SPI DC
+
+    config CS_GPIO
+        int "LCD CS GPIO Pin"
+        help
+            GPIO pin used as LCD CS
+                
+    config TOUCH_CS_GPIO
+        int "Touchscreen CS GPIO Pin"
+        help
+            GPIO pin used as touchscreen CS
+                
+    config SD_CS_GPIO
+        int "SD card CS GPIO Pin"
+        help
+            GPIO pin used as SD card CS
+                                
+        
+endmenu

@@ -1,0 +1,17 @@
+{
+    "C_Cpp.intelliSenseEngine": "default",
+    "idf.espIdfPath": "/Users/macbaker/esp/v5.4/esp-idf",
+    "idf.openOcdConfigs": [
+        "interface/ftdi/esp32_devkitj_v1.cfg",
+        "target/esp32s3.cfg"
+    ],
+    "idf.port": "/dev/tty.usbmodem141301",
+    "idf.toolsPath": "/Users/macbaker/.espressif",
+    "idf.flashType": "UART",
+    "idf.customExtraVars": {
+        "OPENOCD_SCRIPTS": "/Users/macbaker/.espressif/tools/openocd-esp32/v0.11.0-esp32-20221026/openocd-esp32/share/openocd/scripts",
+        "ESP_ROM_ELF_DIR": "/Users/macbaker/.espressif/tools/esp-rom-elfs/20220823/",
+        "IDF_TARGET": "esp32s3"
+    },
+    "idf.pythonInstallPath": "/usr/local/bin/python"
+}
