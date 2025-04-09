@@ -363,7 +363,6 @@ static esp_err_t handleDrawDataloggerGraph(httpd_req_t *req)
     time(&rawtime);
     now = localtime(&rawtime);
     int nowIndex = (4 * now->tm_hour + (now->tm_min / 15) + 1) % (24 * 4);
-    ESP_LOGI(TAG, "nowIndex = %d", nowIndex);
 
     // graph the setpoint data first. We graph from 0 to now, skip 2, and then now+2 to 95
     fprintf(stream, "<g id=\"setpoint\" >\n");
@@ -552,8 +551,6 @@ static esp_err_t wifiInit(void)
     ESP_ERROR_CHECK(esp_wifi_set_mode(WIFI_MODE_STA));
     ESP_ERROR_CHECK(esp_wifi_set_config(WIFI_IF_STA, &wifi_config));
     ESP_ERROR_CHECK(esp_wifi_start());
-
-    ESP_LOGI(TAG, "wifi_init_sta finished.");
 
     return ESP_OK;
 }
