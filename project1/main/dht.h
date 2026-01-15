@@ -4,10 +4,10 @@
 #include <esp_err.h>
 
 // initialize the sensor and software interface
-void dhtInit();
+esp_err_t dhtInit();
 
 // initiate a new measurement
-void dhtStartMeasurement();
+esp_err_t dhtStartMeasurement();
 
 // get the results of a measurement
 esp_err_t dhtGetResults(double *temperature, double *humidity);

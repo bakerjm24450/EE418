@@ -4,5 +4,7 @@
 
 #pragma once
 
+#include "esp_err.h"
+
 // initialize display, interface, and GUI
-void displayInit();
+esp_err_t displayInit();

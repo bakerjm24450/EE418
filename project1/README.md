@@ -10,7 +10,7 @@ of 26-28us for a bit of 0, or 70us for a bit of 1.
 The data is sent as 16 bits for the humidity value, 16 bits for the temperature value, and
 an 8 bit checksum.
 
-The interrupt is triggered on the falling edge of signal, at the end of each transmitted bit. After
+The interrupt should be triggered on the falling edge of signal, at the end of each transmitted bit. After
 42 edges (2 start bits followed by 40 data bits), a flag is set to indicate the packet is complete.
 
 ## Supplied code

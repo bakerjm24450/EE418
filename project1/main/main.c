@@ -1,6 +1,9 @@
-#include <freertos/FreeRTOS.h>
 #include <esp_err.h>
 #include <esp_log.h>
+#include <esp_check.h>
+#include <driver/gpio.h>
+#include <freertos/FreeRTOS.h>
+#include <freertos/task.h>
 
 #include "dht.h"
 
@@ -14,7 +17,7 @@ void app_main(void)
     esp_err_t result;
 
     // initialize dht sensor
-    dhtInit();
+    ESP_ERROR_CHECK(dhtInit());
 
     for (;;) {
         // delay 2 sec between measurements
@@ -22,7 +25,7 @@ void app_main(void)
 
         // start a measurement
         ESP_LOGD(TAG, "Starting measurement");
-        dhtStartMeasurement();
+        ESP_ERROR_CHECK(dhtStartMeasurement());
 
         // wait for completion
         if ((result = dhtGetResults(&temperature, &humidity)) == ESP_OK) {
@@ -31,8 +34,11 @@ void app_main(void)
         else if (result == ESP_ERR_TIMEOUT) {
             ESP_LOGI(TAG, "Timeout communicating with DHT22 sensor");
         }
-        else {
+        else if (result == ESP_ERR_INVALID_CRC) {
             ESP_LOGI(TAG, "Checksum mismatch with DHT22 sensor");
+        }
+        else {
+            ESP_LOGE(TAG, "Error reading DHT22 sensor: %s", esp_err_to_name(result));
         }
     }
 

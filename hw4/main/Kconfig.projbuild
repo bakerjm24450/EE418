@@ -1,0 +1,15 @@
+menu "EE 418 HW 4 Configuration"
+
+     config RED_LED_GPIO
+        int "Red LED GPIO Pin"
+        default 18
+        help
+            GPIO pin used for red LED
+
+    config GREEN_LED_GPIO
+        int "Green LED GPIO Pin"
+        default 17
+        help
+            GPIO pin used for green LED
+
+endmenu

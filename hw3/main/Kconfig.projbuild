@@ -1,0 +1,15 @@
+menu "EE 418 HW 3 Configuration"
+
+     config OUTPUT_GPIO
+        int "Output GPIO Pin"
+        default 18
+        help
+            GPIO pin used for output
+
+    config INPUT_GPIO
+        int "Input GPIO Pin"
+        default 5
+        help
+            GPIO pin used for input
+
+endmenu

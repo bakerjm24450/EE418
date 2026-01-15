@@ -1,0 +1,9 @@
+menu "EE 418 HW 2 Configuration"
+
+     config LED_GPIO
+        int "LED GPIO Pin"
+        default 18
+        help
+            GPIO pin used for LED
+
+endmenu

@@ -1,0 +1,72 @@
+{
+    "folders" : [
+        {
+            "name": "hw2",
+            "path": "hw2"
+        },
+        {
+            "name": "hw3",
+            "path": "hw3"
+        },
+        {
+            "name": "hw4",
+            "path": "hw4"
+        },
+        {
+            "name": "hw5",
+            "path": "hw5"
+        },
+        {
+            "name": "hw6",
+            "path": "hw6"
+        },
+        {
+            "name": "hw7",
+            "path": "hw7"
+        },
+        {
+            "name": "hw8",
+            "path": "hw8"
+        },
+        {
+            "name": "hw9",
+            "path": "hw9"
+        },
+        {
+            "name": "project1",
+            "path": "project1"
+        },
+        {
+            "name": "project2",
+            "path": "project2"
+        },
+        {
+            "name": "project3",
+            "path": "project3"
+        },
+        {
+            "name": "project4",
+            "path": "project4"
+        },
+        {
+            "name": "project5",
+            "path": "project5"
+        },
+        {
+            "name": "project6",
+            "path": "project6"
+        },
+        {
+            "name": "project7",
+            "path": "project7"
+        }
+    ],
+    "settings": {
+        "files.exclude": {
+            "**/.DS_Store": true,
+            "**/*.o": true,
+            "**/*.out": true,
+            "**/*.exe": true
+        },
+    }   
+}

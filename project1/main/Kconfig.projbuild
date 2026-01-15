@@ -1,0 +1,15 @@
+menu "EE 418 Project 1 Configuration"
+
+    config DHT_GPIO
+        int "DHT Sensor GPIO Pin"
+        default 16
+        help
+            GPIO pin connected to the DHT sensor.
+
+     config LED_GPIO
+        int "(Optional) LED GPIO Pin"
+        default 18
+        help
+            Optional GPIO pin used for LED (useful for debugging).
+
+endmenu

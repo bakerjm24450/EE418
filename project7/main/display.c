@@ -173,16 +173,20 @@ static void updateGUI();
 /**
  * Initialize the display and GUI. Also creates the task to update the GUI
  */
-void displayInit()
+esp_err_t displayInit()
 {
     // create task to run the GUI. The task handles all initialization, too
-    xTaskCreate(
+    BaseType_t result = xTaskCreate(
         guiTask,
         "GUI task",
         8192,
         NULL,
         2,
         NULL);
+
+    ESP_RETURN_ON_FALSE(result == pdPASS, ESP_ERR_NO_MEM, TAG, "Cannot create GUI task");
+
+    return ESP_OK;
 }
 
 /**
@@ -360,7 +364,7 @@ static void init_panel(esp_lcd_panel_handle_t *panel)
     // initialize the HX8357D
     ESP_ERROR_CHECK(esp_lcd_panel_reset(*panel));
     ESP_ERROR_CHECK(esp_lcd_panel_init(*panel));
-    ESP_ERROR_CHECK(esp_lcd_panel_mirror(*panel, true, false));
+    ESP_ERROR_CHECK(esp_lcd_panel_mirror(*panel, false, false));
     ESP_ERROR_CHECK(esp_lcd_panel_disp_on_off(*panel, true));
 }
 
@@ -860,22 +864,19 @@ static void draw_bitmap_begin_callback(lv_display_t *disp, const lv_area_t *area
  */
 static void touch_callback(lv_indev_t *indev, lv_indev_data_t *data)
 {
-    uint16_t touchpad_x[1] = {0};
-    uint16_t touchpad_y[1] = {0};
-    uint16_t touchpad_strength[1] = {0};
+    esp_lcd_touch_point_data_t touchData[1] = {0};
     uint8_t touch_cnt = 0;
 
     esp_lcd_touch_handle_t touch_pad = lv_indev_get_user_data(indev);
     esp_lcd_touch_read_data(touch_pad);
 
     // get coordinates
-    bool touchpad_pressed = esp_lcd_touch_get_coordinates(touch_pad, touchpad_x,
-                                                          touchpad_y, touchpad_strength, &touch_cnt, 1);
+    ESP_ERROR_CHECK(esp_lcd_touch_get_data(touch_pad, touchData, &touch_cnt, 1));
 
-    if (touchpad_pressed && touch_cnt > 0)
+    if (touch_cnt > 0)
     {
-        data->point.x = touchpad_x[0];
-        data->point.y = touchpad_y[0];
+        data->point.x = touchData[0].x;
+        data->point.y = touchData[0].y;
         data->state = LV_INDEV_STATE_PRESSED;
     }
     else
@@ -939,7 +940,7 @@ static lv_chart_series_t *chartSetpoint = NULL;    // chart data for setpoints
 static void createGUI(lv_display_t *disp)
 {
     // rotate 90 degrees
-    lv_display_set_rotation(disp, LV_DISPLAY_ROTATION_90);
+    lv_display_set_rotation(disp, LV_DISPLAY_ROTATION_270);
 
     /*Change the active screen's background color*/
     lv_obj_set_style_bg_color(lv_screen_active(), lv_color_black(), LV_PART_MAIN);
@@ -1245,10 +1246,10 @@ static void updateGUI()
         time(&rawtime);
         now = localtime(&rawtime);
 
-        int nextIndex = (4 * now->tm_hour + (now->tm_min / 15) + 1) % (24*4);
-        
+        int nextIndex = (4 * now->tm_hour + (now->tm_min / 15) + 1) % (24 * 4);
+
         // zero out next 2 data points
         lv_chart_set_value_by_id(chart, chartTemperature, nextIndex, LV_CHART_POINT_NONE);
-        lv_chart_set_value_by_id(chart, chartTemperature, (nextIndex+1)%(24*4), LV_CHART_POINT_NONE);
+        lv_chart_set_value_by_id(chart, chartTemperature, (nextIndex + 1) % (24 * 4), LV_CHART_POINT_NONE);
     }
 }

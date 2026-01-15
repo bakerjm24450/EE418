@@ -12,17 +12,17 @@ and humidity. The webserver requires that the ESP32 be connected to a WiFi netwo
 
 ## Implementation details
 
-The interface to the DHT22 sensor is similar to Project 1. However, there are two changes
+The interface to the DHT22 sensor is similar to Project 1. However, there are three changes
 that must be made:
-- Write a task function that will manage the DHT22. This function should call dhtInit() first, and
-then in an infinite loop, it should take a measurement every 2 seconds. Note that this is almost identical to the app_main() function from Project 1.
+- Modify the dhtInit() function so that it configures the DHT GPIO and interrupt, and *then* creates a task that will perform the measurements.
+- Write the task function that will manage the DHT22. This function should have an infinite loop where it takes a measurement every 2 seconds. Note that this is similar to the infinite loop in the app_main() function from Project 1.
 - Write functions to return the most recent measured temperature and relative humidity. These
 functions will be used by the webserver to display the current readings
 
 The code for the webserver is supplied to you and does not need any modifications. The process of
-connecting to a WiFi access point and running the webserver is no-trivial, but does not involve FreeRTOS for the most part so you are not being asked to develop the code from scratch.
+connecting to a WiFi access point and running the webserver is non-trivial, but does not involve FreeRTOS for the most part so you are not being asked to develop the code from scratch.
 
-Note that you will need to run menuconfig to specify the WiFi SSID and password (that should only need to be done one time).
+Note that you will need to run menuconfig to specify the WiFi SSID and password, as well as the GPIO infomration (that should only need to be done one time).
 
 ## Files supplied to you
 
