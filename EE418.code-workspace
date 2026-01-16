@@ -1,5 +1,5 @@
 {
-    "folders" : [
+    "folders": [
         {
             "name": "hw2",
             "path": "hw2"
@@ -68,5 +68,19 @@
             "**/*.out": true,
             "**/*.exe": true
         },
-    }   
+    },
+    "extensions": {
+        "recommendations": [
+            "ms-vscode.cpptools",
+            "jeff-hykin.better-cpp-syntax",
+            "ms-vscode.cpptools-themes",
+            "ms-vscode.cpptools-extension-pack",
+            "espressif.esp-idf-extension",
+            "github.copilot-chat"
+        ],
+        "unwantedRecommendations": [
+            "twxs.cmake",
+            "ms-vscode.cmake-tools",
+        ]
+    }
 }
